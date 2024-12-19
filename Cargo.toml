@@ -1,0 +1,30 @@
+[package]
+name = "kiwi-server"
+version = "0.1.0"
+edition = "2021"
+authors = [ "4hoe8pow <tokunaga@grill-ware.com>" ]
+
+[package.metadata.release]
+release = false
+
+# https://github.com/rustwasm/wasm-pack/issues/1247
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+worker = { version="0.5", features=['http', 'axum'] } # Required for Cloudflare Workers integration with HTTP and Axum support
+worker-macros = { version="0.5", features=['http'] } # Provides macros for worker crate, essential for HTTP handling
+axum  = { version = "0.7", default-features = false, features = ['json', 'macros']} # Web framework for building HTTP services, used for routing and JSON handling
+tower-service = "0.3" # Abstraction for defining services, used by Axum
+console_error_panic_hook = { version = "0.1.7" } # Provides better error messages in the console for debugging
+reqwest = "0.12" # HTTP client for making requests, essential for external API calls
+serde = "^1.0" # Serialization and deserialization framework, used for JSON handling
+tower-http = { version = "0.6", features = ["cors"] } # Middleware for HTTP services, used for CORS handling
+once_cell = "1.20" # Provides a safe, lazy-initialized static variable, used for shared state
+dashmap = "6.1.0" # Concurrent hashmap, useful for thread-safe data structures
+rand = "0.8.5" # Random number generation, used for generating unique IDs
+uuid = {version = "1.11.0", features = ["v8"] } # Universally unique identifier, used for generating unique room IDs
+getrandom = { version = "0.2", features = ["js"] } # Provides random number generation support for WebAssembly
