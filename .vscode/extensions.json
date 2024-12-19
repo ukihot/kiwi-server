@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "tamasfe.even-better-toml",
+        "rust-lang.rust-analyzer",
+        "fill-labs.dependi",
+        "cloudflare.cloudflare-workers-bindings-extension",
+        "seatonjiang.gitmoji-vscode"
+    ]
+}
